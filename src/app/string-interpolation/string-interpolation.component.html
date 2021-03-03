@@ -1,0 +1,28 @@
+<h2>String Interpolation Examples</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Things We can do using String Interpolation</h3>
+        <ul class="list-group">
+            <li class="list-group-item">4+5 : {{4+5}}</li>
+            <li class="list-group-item">Num1 : {{num1}}</li>
+            <li class="list-group-item">Num1+Num2 : {{num1+num2}}</li>
+            <li class="list-group-item">Full Name : {{fName+" "+lName}}</li>
+            <li class="list-group-item">Terms and Conditions : {{termsAndConditions}}</li>
+            <li class="list-group-item">Person : {{person1.Name + " is from "+person1.Address}}</li>
+            <li class="list-group-item">Full Name : {{getFullName()}}</li>
+            <li class="list-group-item">
+                <img src={{imageUrl}} alt=""> 
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h3>Things We cannot do using String Interpolation</h3>
+        <ul class="list-group">
+         <li class="list-group-item">Cannot create new Objects in SI expression <!--{{new Person()}} --></li> 
+         <li class="list-group-item">Cannot write chained expression  <!--{{num1;num2}} --></li> 
+         <li class="list-group-item">Cannot write comma separated expression <!--{{num1,num2}} --></li> 
+         <!-- <li class="list-group-item">Cannot assign value to any property inside expression {{num1=10}} </li>  -->
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<button type="button" (click)="message='Test Message'" class="btn btn-primary">Click Here</button>
+<button type="button" (click)="buttonClicked()" class="btn btn-primary">Click Example</button>
+<button type="button" (dblclick)="buttonDblClicked()" class="btn btn-primary">Double Click Example</button>
+{{message}}
+
+<div class="row">
+    <div class="col-md-3">
+        <input type="text" (input)="InputChanged($event)" class="form-control">
+    </div>
+    <div class="col-md-3">
+        {{InputText}}
+    </div>
+</div>
