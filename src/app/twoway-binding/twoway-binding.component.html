@@ -1,0 +1,38 @@
+<h3>One way binding Examples</h3>
+<div class="row">
+    <div class="col-md-4">
+        <input type="text" (keyup)="OneWayChange($event)" class="form-control">
+    </div>
+    <div class="col-md-4">
+        {{OneWayMessage}}
+    </div>
+    <div class="col-md-4">
+        <button type="button" (click)="OneWayTest()" class="btn btn-primary">One Way Test</button>
+    </div>
+</div>
+
+<!-- <h3>Two way binding Examples</h3>
+<div class="row">
+    <div class="col-md-4">
+        <input type="text" [(ngModel)]="TwoWayMessage" class="form-control">
+    </div>
+    <div class="col-md-4">
+        {{TwoWayMessage}}
+    </div>
+    <div class="col-md-4">
+        <button type="button" (click)="TwoWayTest()" class="btn btn-primary">Two Way Test</button>
+    </div>
+</div> -->
+
+<h3>Two way binding Examples</h3>
+<div class="row">
+    <div class="col-md-4">
+        <input type="text" [ngModel]="TwoWayMessage" (ngModelChange)="TwoWayChange($event)" class="form-control">
+    </div>
+    <div class="col-md-4">
+        {{TwoWayMessage}}
+    </div>
+    <div class="col-md-4">
+        <button type="button" (click)="TwoWayTest()" class="btn btn-primary">Two Way Test</button>
+    </div>
+</div>

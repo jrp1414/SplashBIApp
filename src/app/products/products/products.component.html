@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" [(ngModel)]="filterText" class="form-control">
+        </div>
+        <div *ngIf="filterText.length>0;else noFilter" class="col-md-3 alert alert-info">
+            {{filterText}}
+        </div>
+        <ng-template #noFilter>
+            <div class="col-md-3 alert alert-danger">
+                No text
+            </div>
+        </ng-template>
+    </div>
+    <table class="table table-bordered table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Type</th>
+
+                <th>fileName</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr *ngFor="let product of productList;index as i;count as c"> -->
+            <!-- <tr style="font-weight: bold;" [ngStyle]="{backgroundColor:product.rating>3?'green':'red'}" *ngFor="let product of productList;index as i;count as c"> -->
+            <!-- <tr style="font-weight: bold;" [ngStyle]="getStyle(product)" *ngFor="let product of productList;index as i;count as c">     -->
+            <!-- <tr style="font-weight: bold;" [ngClass]="{red:product.rating<=3,green:product.rating>3}" -->
+            <tr [ngClass]="getClass(product)" *ngFor="let product of productList;index as i;count as c">
+                <td scope="row">{{i+1}} of {{c}}</td>
+                <td>{{product.title}}</td>
+                <td>{{product.type}}</td>
+                <td>{{product.filename+extension}}</td>
+                <td>{{product.price}}</td>
+                <td [ngSwitch]="product.rating">
+                    <span *ngSwitchCase="1">Very Bad</span>
+                    <span *ngSwitchCase="2">Bad</span>
+                    <span *ngSwitchCase="3">Average</span>
+                    <span *ngSwitchCase="4">Good</span>
+                    <span *ngSwitchCase="5">Very Good</span>
+                    <span *ngSwitchDefault>NA</span>
+                </td>
+                <td>{{product.description}}</td>
+                <td>
+                    <img src={{product.filename+extension}} alt="">
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

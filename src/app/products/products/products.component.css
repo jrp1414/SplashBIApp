@@ -1,0 +1,14 @@
+
+.green{
+    background-color:chartreuse;
+    color:blue;
+}
+
+.red{
+    background-color:crimson;
+    color:white;
+}
+
+.bold{
+    font-weight:bold;
+}
