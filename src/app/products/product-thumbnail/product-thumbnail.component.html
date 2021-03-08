@@ -1,0 +1,8 @@
+<div class="card text-white bg-success" style="max-width: 350px; max-height: 400px;">
+  <img class="card-img-top" [src]="product.imageurl" alt="">
+  <div class="card-body">
+    <h4 class="card-title">{{product.title}}</h4>
+    <p class="card-text">{{product.description}}</p>
+    <button type="button" (click)="AddToCart()" class="btn btn-primary">Add To Cart</button>
+  </div>
+</div>

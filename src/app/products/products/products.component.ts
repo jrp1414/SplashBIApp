@@ -30,6 +30,11 @@ export class ProductsComponent {
     return "red bold";
   }
 
+  cartProducts:string[]=[];
+  Received(data){
+    this.cartProducts.push(data);
+  }
+
   extension:string=".pdf";
 
 }
