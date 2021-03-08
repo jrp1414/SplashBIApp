@@ -19,6 +19,7 @@
     "width": 299,
     "price": 29.45585,
     "rating": 4,
+    "currencycode":"INR",
     "imageurl":"https://image.freepik.com/free-photo/sweet-fresh-strawberry-wooden-table_221774-7430.jpg"
   }, {
     "id":3,
@@ -26,6 +27,7 @@
     "type": "vegetable",
     "description": "Asparagus with ham on the wooden table",
     "filename": "2",
+    "currencycode":"GBP",
     "height": 450,
     "width": 299,
     "price": 18.95,

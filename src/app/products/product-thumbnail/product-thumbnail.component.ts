@@ -10,6 +10,7 @@ import { Product } from '../services/product.model';
 export class ProductThumbnailComponent implements OnInit {
   @Input("pd") product: Product;
   @Output("sd") send: EventEmitter<string> = new EventEmitter();
+  date:Date = new Date();
   constructor() { }
 
   ngOnInit(): void {

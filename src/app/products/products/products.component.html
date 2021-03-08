@@ -1,6 +1,9 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-1">
+            Filter:
+        </div>
+        <div class="col-md-2">
             <input type="text" [(ngModel)]="filterText" class="form-control">
         </div>
         <div *ngIf="filterText.length>0" class="col-md-2 alert alert-info">
@@ -9,10 +12,10 @@
         <div class="col-md-4">
             <app-cart [products]="cartProducts"></app-cart>
         </div>
-        
+
     </div>
     <div class="row">
-        <div class="col-md-3" *ngFor="let prod of productList">
+        <div class="col-md-3" *ngFor="let prod of productList | filter : filterText : 'title'">
             <product-thumbnail [pd]="prod" (sd)="Received($event)"></product-thumbnail>
         </div>
     </div>

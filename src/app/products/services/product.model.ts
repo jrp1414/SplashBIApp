@@ -9,6 +9,7 @@ export class Product {
     price?: number;
     rating?: number;
     imageurl?: string;
+    currencycode?:string
 }
 
 
