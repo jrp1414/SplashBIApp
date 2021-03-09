@@ -1,4 +1,7 @@
 <div class="container">
+    <div basic-highlight>Basic Highlight Directive</div>
+    <!-- <div better-highlight defaultColor="yellowgreen" >Better Highlight Directive</div> -->
+    <div [better-highlight]="'yellow'" highlight="chartreuse" >Better Highlight Directive</div>
     <div class="row">
         <div class="col-md-1">
             Filter:
@@ -6,9 +9,18 @@
         <div class="col-md-2">
             <input type="text" [(ngModel)]="filterText" class="form-control">
         </div>
-        <div *ngIf="filterText.length>0" class="col-md-2 alert alert-info">
+        <div *unless="filterText.length==0" class="col-md-2 alert alert-info">
             {{filterText}}
         </div>
+        <!-- <div *ngIf="filterText.length>0" class="col-md-2 alert alert-info">
+            {{filterText}}
+        </div> -->
+        <!-- <ng-template [ngIf]="filterText.length>0">
+            <div class="col-md-2 alert alert-info">
+                {{filterText}}
+            </div>
+        </ng-template> -->
+
         <div class="col-md-4">
             <app-cart [products]="cartProducts"></app-cart>
         </div>
