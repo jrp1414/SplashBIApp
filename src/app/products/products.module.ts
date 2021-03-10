@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductThumbnailComponent } from './product-thumbnail/product-thumbnail.component';
 import { CartComponent } from './cart/cart.component';
 import { SharedModule } from '../shared/shared.module';
+import { TempProductsComponent } from './temp-products/temp-products.component';
 
 
 
@@ -12,7 +13,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     ProductsComponent,
     ProductThumbnailComponent,
-    CartComponent
+    CartComponent,
+    TempProductsComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule
   ],
   exports: [
-    ProductsComponent
+    ProductsComponent,
+    TempProductsComponent
   ]
 })
 export class ProductsModule { }

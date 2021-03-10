@@ -20,10 +20,13 @@
                 {{filterText}}
             </div>
         </ng-template> -->
-
+        <div class="col-md-1">
+            <button type="button" (click)="ServiceTest()" class="btn btn-primary">Test Service</button>
+        </div>
         <div class="col-md-4">
             <app-cart [products]="cartProducts"></app-cart>
         </div>
+        
 
     </div>
     <div class="row">

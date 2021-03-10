@@ -8,6 +8,8 @@ import { EventBindingComponent } from './event-binding/event-binding.component';
 import { TwowayBindingComponent } from './twoway-binding/twoway-binding.component';
 import { FormsModule } from '@angular/forms';
 import { ProductsModule } from './products/products.module';
+import { ProductService } from './products/services/product.service';
+import { LoggerService } from './shared/services/logger.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { ProductsModule } from './products/products.module';
     FormsModule,
     ProductsModule
   ],
+  providers: [LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
