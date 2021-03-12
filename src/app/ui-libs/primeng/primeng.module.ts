@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import {RatingModule} from 'primeng/rating';
+import {ToastModule} from 'primeng/toast';
+import {RippleModule} from 'primeng/ripple';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
+  exports:[
+    RatingModule,
+    ToastModule,
+    RippleModule
   ]
 })
 export class PrimengModule { }

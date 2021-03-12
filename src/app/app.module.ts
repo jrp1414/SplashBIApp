@@ -24,6 +24,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProductsComponent } from './products/products/products.component';
+import { ProductsManagerModule } from './products-manager/products-manager.module';
+import { PrimengModule } from './ui-libs/primeng/primeng.module';
 
 const routes: Routes = [
   { path: "home", component: DashboardComponent },
@@ -32,7 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     AppComponent,
     StringInterpolationComponent,
     PropertyBindingComponent,
@@ -45,9 +47,11 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     ProductsModule,
+    ProductsManagerModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MaterialModule,
+    PrimengModule,
     LayoutModule
   ],
   providers: [LoggerService],

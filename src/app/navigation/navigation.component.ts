@@ -16,7 +16,7 @@ import { map, shareReplay } from 'rxjs/operators';
     }
     
     .sidenav .mat-toolbar {
-      background: inherit;
+      /* background: inherit; */
     }
     
     .mat-toolbar.mat-primary {
