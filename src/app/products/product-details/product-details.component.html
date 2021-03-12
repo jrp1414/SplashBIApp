@@ -1,0 +1,10 @@
+<div class="jumbotron" style="color: purple;">
+    <div class="container">
+        <h1 class="display-3">{{product.title}}</h1>
+        <p class="lead">{{product.description}}</p>
+        <hr class="my-2">
+        <p class="lead">Price : {{product.price}}</p>
+        <button type="button" [routerLink]="['/productdetails',5]" class="btn btn-primary">Load 5</button>  
+        <img [src]="product.imageurl" alt="">
+    </div>
+</div>

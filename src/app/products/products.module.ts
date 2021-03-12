@@ -6,24 +6,27 @@ import { ProductThumbnailComponent } from './product-thumbnail/product-thumbnail
 import { CartComponent } from './cart/cart.component';
 import { SharedModule } from '../shared/shared.module';
 import { TempProductsComponent } from './temp-products/temp-products.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
-
+const routes: Routes = [
+  // { path: "productdetails/:id/:title", component: ProductDetailsComponent }
+  { path: "productdetails/:id", component: ProductDetailsComponent }
+];
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductThumbnailComponent,
     CartComponent,
-    TempProductsComponent
+    TempProductsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    RouterModule.forChild(routes),
     FormsModule
-  ],
-  exports: [
-    ProductsComponent,
-    TempProductsComponent
   ]
 })
 export class ProductsModule { }
