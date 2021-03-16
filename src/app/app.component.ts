@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
 import { ProductService } from './products/services/product.service';
 import { LoggerService } from './shared/services/logger.service';
 
@@ -26,12 +27,15 @@ import { LoggerService } from './shared/services/logger.service';
   // providers:[LoggerService, ProductService]
   // encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor() {
+  constructor(private primengConfig: PrimeNGConfig) {
     // console.log(Colors.Red);
     // console.log(Colors.Blue);
     // console.log(Colors.Green);
+  }
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
   }
 }
 

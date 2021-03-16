@@ -26,11 +26,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ProductsComponent } from './products/products/products.component';
 import { ProductsManagerModule } from './products-manager/products-manager.module';
 import { PrimengModule } from './ui-libs/primeng/primeng.module';
+import { SignupComponent } from './signup/signup.component';
+import { MessageService } from 'primeng/api';
 
 const routes: Routes = [
   { path: "home", component: DashboardComponent },
   { path: "shop", component: ProductsComponent },
-  { path: "", component: DashboardComponent }
+  { path: "signup", component: SignupComponent },
+  { path: "", component: DashboardComponent },
+  { path: "**", redirectTo:"home" }
 ];
 
 @NgModule({
@@ -41,12 +45,13 @@ const routes: Routes = [
     EventBindingComponent,
     TwowayBindingComponent,
     NavigationComponent,
-    DashboardComponent
+    DashboardComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ProductsModule,
+    ProductsModule, 
     ProductsManagerModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
@@ -54,7 +59,7 @@ const routes: Routes = [
     PrimengModule,
     LayoutModule
   ],
-  providers: [LoggerService],
+  providers: [LoggerService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

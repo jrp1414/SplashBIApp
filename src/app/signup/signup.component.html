@@ -1,0 +1,18 @@
+<form #signUp="ngForm" (ngSubmit)="onSubmit(signUp.value)" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="FirstName">First Name</label>
+                <input type="text" class="form-control" name="FirstName" ngModel id="FirstName">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="LastName">Last Name</label>
+                <input type="text" class="form-control" name="LastName" ngModel id="LastName">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
