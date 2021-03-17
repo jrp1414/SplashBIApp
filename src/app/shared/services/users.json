@@ -1,0 +1,59 @@
+[
+    {
+        "FirstName": "Ram",
+        "LastName": "Sharma",
+        "Address": "Pune",
+        "Email": "ram@gmail.com",
+        "Password": "Test",
+        "ConfirmPassword": "Test",
+        "Details": {
+            "State": "Maharashtra",
+            "TermsAndConditions": true,
+            "Gender": "male",
+            "DOB": "2021-02-28T18:30:00.000Z",
+            "Skills": [
+                "Angular",
+                "Javascript"
+            ],
+            "City": "Pune"
+        }
+    },
+    {
+        "FirstName": "Amit",
+        "LastName": "Khanna",
+        "Address": "Mumbai",
+        "Email": "amit@gmail.com",
+        "Password": "Test",
+        "ConfirmPassword": "Test",
+        "Details": {
+            "State": "Maharashtra",
+            "TermsAndConditions": true,
+            "Gender": "male",
+            "DOB": "2021-02-28T18:30:00.000Z",
+            "Skills": [
+                "Angular",
+                "Javascript"
+            ],
+            "City": "Mumbai"
+        }
+    },
+    {
+        "FirstName": "Thimmappa",
+        "LastName": "Kolakanuru",
+        "Address": "Hyderabad",
+        "Email": "thimmappa@gmail.com",
+        "Password": "Test",
+        "ConfirmPassword": "Test",
+        "Details": {
+            "State": "Telengana",
+            "TermsAndConditions": true,
+            "Gender": "male",
+            "DOB": "2021-02-28T18:30:00.000Z",
+            "Skills": [
+                "Angular",
+                "Javascript"
+            ],
+            "City": "Hyderabad"
+        }
+    }
+]

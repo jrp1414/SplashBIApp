@@ -1,0 +1,39 @@
+[
+    {
+        "Name": "Maharashtra",
+        "Cities": [
+            "Pune",
+            "Mumbai",
+            "Nagpur",
+            "Nashik"
+        ]
+    },
+    {
+        "Name": "Karnataka",
+        "Cities": [
+            "Bengaluru",
+            "Belgaum"
+        ]
+    },
+    {
+        "Name": "Odisha",
+        "Cities": [
+            "Bhubaneswar",
+            "Cuttack",
+            "Puri"
+        ]
+    },
+    {
+        "Name": "Telengana",
+        "Cities": [
+            "Hyderabad"
+        ]
+    },
+    {
+        "Name": "West Bengal",
+        "Cities": [
+            "Kolkata",
+            "Nandigram"
+        ]
+    }
+]

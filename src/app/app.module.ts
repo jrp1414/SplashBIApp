@@ -28,6 +28,7 @@ import { ProductsManagerModule } from './products-manager/products-manager.modul
 import { PrimengModule } from './ui-libs/primeng/primeng.module';
 import { SignupComponent } from './signup/signup.component';
 import { MessageService } from 'primeng/api';
+import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   { path: "home", component: DashboardComponent },
@@ -51,7 +52,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    ProductsModule, 
+    ProductsModule,
+    SharedModule, 
     ProductsManagerModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,

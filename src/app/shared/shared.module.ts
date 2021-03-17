@@ -5,6 +5,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { BasicHighlightDirective } from './directives/basic-highlight.directive';
 import { BetterHighlightDirective } from './directives/better-highlight.directive';
 import { UnlessDirective } from './directives/unless.directive';
+import { MustMatchDirective } from './directives/must-match.directive';
+import { EmailMatchDirective } from './directives/email-match.directive';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { UnlessDirective } from './directives/unless.directive';
     FilterPipe,
     BasicHighlightDirective,
     BetterHighlightDirective,
-    UnlessDirective
+    UnlessDirective,
+    MustMatchDirective,
+    EmailMatchDirective
   ],
   imports: [
     CommonModule
@@ -22,7 +26,9 @@ import { UnlessDirective } from './directives/unless.directive';
     FilterPipe,
     BasicHighlightDirective,
     BetterHighlightDirective,
-    UnlessDirective
+    UnlessDirective,
+    MustMatchDirective,
+    EmailMatchDirective
   ]
 })
 export class SharedModule { }
