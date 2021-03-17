@@ -7,10 +7,11 @@ import { AddComponent } from './add/add.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../ui-libs/material/material.module';
 import { PrimengModule } from '../ui-libs/primeng/primeng.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductGuard } from '../products/services/product.guard';
 import { InvalidComponent } from './invalid/invalid.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -31,6 +32,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MaterialModule, 
     PrimengModule,
+    SharedModule,
+    ReactiveFormsModule,    
     RouterModule.forChild(routes)
   ]
 })

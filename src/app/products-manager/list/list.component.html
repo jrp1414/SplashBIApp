@@ -4,10 +4,7 @@
             <div class="col-md-2">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a routerLink="new">Add Student</a>
-                    </li>
-                    <li class="list-group-item" >
-                        <a routerLink="5858">Wrong URL</a>
+                        <a routerLink="new">Add Product</a>
                     </li>
                     <li class="list-group-item" *ngFor="let prod of productsList">
                         <a [routerLink]="[prod.id]">{{prod.title}}</a>
