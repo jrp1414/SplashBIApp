@@ -1,17 +1,24 @@
 <div class="panel" style="color:purple">
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <a routerLink="new">Add Product</a>
                     </li>
-                    <li class="list-group-item" *ngFor="let prod of productsList">
+                    <li class="list-group-item" *ngFor="let prod of filteredProducts">
                         <a [routerLink]="[prod.id]">{{prod.title}}</a>
                     </li>
                 </ul>
+                <mat-paginator 
+                    [length]="productsList.length" 
+                    [pageSize]="pageSize" 
+                    [pageSizeOptions]="[5, 10, 25, 100]"
+                    (page)="pageEvent=getFilteredData($event)"
+                    >
+                </mat-paginator>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <router-outlet></router-outlet>
             </div>
         </div>

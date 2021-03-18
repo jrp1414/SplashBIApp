@@ -1,0 +1,22 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Type</mat-label>
+                <input matInput formControlName="type">
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
