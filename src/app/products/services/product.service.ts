@@ -19,4 +19,8 @@ export class ProductService {
   getProduct(id: number): Product {
     return this.prods.find(p => p.id == id);
   }
+
+  getCategories(): string[] {
+    return [...new Set(this.prods.map(p=>p.type))];    
+  }
 }

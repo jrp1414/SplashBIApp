@@ -3,15 +3,25 @@ export class Product {
     title?: string;
     type?: string;
     description?: string;
-    filename?: string;
-    height?: number;
-    width?: number;
+    availibility:boolean;
+    safeFor:number;
+    qualityScore:number;
+    tags:string[];
+    seller?:SellerAddress;
     price?: number;
     rating?: number;
     imageurl?: string;
+    imageurls?: string;
     currencycode?:string
 }
 
+export class SellerAddress{
+    AddLine1:string;
+    AddLine2:string;
+    AddLine3:string;
+    City:string;
+    State:string;
+}
 
 // "id":1,
 // "title": "Brown eggs",

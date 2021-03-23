@@ -1,4 +1,4 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container" style="background-color: slategrey;">
     <div class="row">
         <div class="col-md-4">
             <mat-form-field appearance="fill">
@@ -9,11 +9,100 @@
         <div class="col-md-4">
             <mat-form-field appearance="fill">
                 <mat-label>Type</mat-label>
-                <input matInput formControlName="type">
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let type of types" [value]="type">{{type | uppercase}}</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
         <div class="col-md-4">
-
+            <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-slide-toggle formControlName="availibility">Current Availability</mat-slide-toggle>
+        </div>
+        <div class="col-md-4">
+            <mat-radio-group formControlName="safeFor" aria-label="Product Safe for">
+                <mat-radio-button value="1">Kids</mat-radio-button>
+                <mat-radio-button value="2">Adults</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="col-md-4">
+            <mat-label style="margin-right: 10px;">Quality Score</mat-label>
+            <mat-slider thumbLabel formControlName="qualityScore" [displayWith]="formatLabel" tickInterval="1000"
+                min="0" max="100"></mat-slider>
+        </div>
+        <div class="col-md-4">
+            <mat-label style="margin-right: 10px;">Tags</mat-label>
+            <p-chips formControlName="tags" separator=","></p-chips>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Price</mat-label>
+                <input matInput type="number" formControlName="price" class="example-right-align">
+                <span matPrefix>₹&nbsp;</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-label style="margin-right: 10px;">Rating</mat-label>
+            <p-rating formControlName="rating" [cancel]="false"></p-rating>
+        </div>
+    </div>
+    <div class="card" style="background-color: slategrey;">
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" (click)="AddImage()" class="btn btn-primary">Add Image</button>
+            </div>
+            <div class="col-md-4" formArrayName="imageurls" *ngFor="let control of imageUrls.controls;let i=index;">
+                <mat-form-field appearance="fill">
+                    <input matInput type="url" [formControlName]="i">
+                </mat-form-field>
+                <button type="button" class="close" aria-label="Close" (click)="RemoveControl(i)">
+                    <span aria-hidden="true">X</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="background-color: slategrey;">
+        <div class="card-header">
+            Address
+        </div>
+        <div class="card-body" formGroupName="seller">
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Line 1</mat-label>
+                        <input matInput formControlName="AddLine1">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Line 2</mat-label>
+                        <input matInput formControlName="AddLine2">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Line 3</mat-label>
+                        <input matInput formControlName="AddLine3">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>City</mat-label>
+                        <input matInput formControlName="City">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>State</mat-label>
+                        <input matInput formControlName="State">
+                    </mat-form-field>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
