@@ -5,6 +5,8 @@
                 <mat-label>Title</mat-label>
                 <input matInput formControlName="title">
             </mat-form-field>
+            <mat-error *ngIf="productForm.get('title').touched && productForm.get('title').errors?.required">Title is required</mat-error>
+            <mat-error *ngIf="productForm.controls.title.errors?.minlength">Minimum length 3</mat-error>
         </div>
         <div class="col-md-4">
             <mat-form-field appearance="fill">
@@ -23,6 +25,13 @@
         <div class="col-md-4">
             <mat-slide-toggle formControlName="availibility">Current Availability</mat-slide-toggle>
         </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Release Date</mat-label>
+            <input matInput formControlName="releaseDate" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="productForm.get('releaseDate').touched && productForm.get('releaseDate').errors?.required">Release Date is required</mat-error>
+        </mat-form-field>
         <div class="col-md-4">
             <mat-radio-group formControlName="safeFor" aria-label="Product Safe for">
                 <mat-radio-button value="1">Kids</mat-radio-button>
@@ -45,10 +54,12 @@
                 <span matPrefix>₹&nbsp;</span>
                 <span matSuffix>.00</span>
             </mat-form-field>
+            <mat-error *ngIf="productForm.controls.price.errors?.range">Price should be between 0 and 100</mat-error>
         </div>
         <div class="col-md-4">
             <mat-label style="margin-right: 10px;">Rating</mat-label>
             <p-rating formControlName="rating" [cancel]="false"></p-rating>
+            <mat-error *ngIf="productForm.controls.rating.errors?.min && productForm.controls.rating.touched">Minimum rating is 1</mat-error>
         </div>
     </div>
     <div class="card" style="background-color: slategrey;">
@@ -60,9 +71,10 @@
                 <mat-form-field appearance="fill">
                     <input matInput type="url" [formControlName]="i">
                 </mat-form-field>
-                <button type="button" class="close" aria-label="Close" (click)="RemoveControl(i)">
-                    <span aria-hidden="true">X</span>
-                </button>
+                <button mat-icon-button (click)="RemoveControl(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                <mat-error *ngIf="imageUrls.controls[i].errors?.required && imageUrls.controls[i].touched">Image URL Required</mat-error>
             </div>
         </div>
     </div>
@@ -70,12 +82,18 @@
         <div class="card-header">
             Address
         </div>
-        <div class="card-body" formGroupName="seller">
-            <div class="row">
+        <div class="col-md-2">
+            <button type="button" (click)="AddSeller()" class="btn btn-primary">Add Seller</button>
+        </div>
+        <div class="card-body" formArrayName="sellers" *ngFor="let group of Sellers.controls;let i=index">
+            <div class="row" [formGroupName]="i">
                 <div class="col-md-4">
                     <mat-form-field appearance="fill">
                         <mat-label>Line 1</mat-label>
                         <input matInput formControlName="AddLine1">
+                        <!-- <mat-error *ngIf="Sellers.controls[i].controls.AddLine1.errors?.required && Sellers.controls[i].controls.AddLine1.touched">Address Line 1 is Required</mat-error> -->
+                        <!-- <mat-error *ngIf="Sellers.controls[i].get('AddLine1').errors?.required && Sellers.controls[i].get('AddLine1').touched">Address Line 1 is Required</mat-error> -->
+                        <mat-error *ngIf="Sellers.get(i+'.AddLine1').errors?.required && Sellers.get(i+'.AddLine1').touched">Address Line 1 is Required</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-md-4">
@@ -102,6 +120,9 @@
                         <input matInput formControlName="State">
                     </mat-form-field>
                 </div>
+                <button type="button" class="close" aria-label="Close" (click)="RemoveAddress(i)">
+                    <span aria-hidden="true">X</span>
+                </button>
             </div>
         </div>
     </div>

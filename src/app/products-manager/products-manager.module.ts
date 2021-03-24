@@ -12,13 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductGuard } from '../products/services/product.guard';
 import { InvalidComponent } from './invalid/invalid.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProductDeactivateGuard } from '../products/services/product-deactivate.guard';
 
 const routes: Routes = [
   {
     path: "productsmanager", component: ListComponent, children: [
-      { path: "new", component: AddComponent },
+      { path: "new", component: AddComponent, canDeactivate: [ProductDeactivateGuard] },
       { path: "invalid", component: InvalidComponent },
-      { path: ":id", component: DetailsComponent, canActivate:[ProductGuard] },
+      { path: ":id", component: DetailsComponent, canActivate: [ProductGuard] },
       { path: ":id/edit", component: EditComponent },
     ]
   }
@@ -30,10 +31,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule, 
+    MaterialModule,
     PrimengModule,
     SharedModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
 })
