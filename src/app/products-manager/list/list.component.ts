@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Product } from 'src/app/products/services/product.model';
 import { ProductService } from 'src/app/products/services/product.service';
@@ -21,10 +22,14 @@ export class ListComponent implements OnInit {
     return e;
   }
 
-  constructor(private ps: ProductService, private toast: MessageService) { }
+  constructor(private ps: ProductService, private toast: MessageService,
+    private route:ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.RefreshProductList();
+  ngOnInit(): void { 
+    this.route.data.subscribe(data=>{
+      this.productsList = <Product[]>data.productsList;
+      this.filteredProducts = this.productsList.slice(this.pageIndex * this.pageSize, (this.pageIndex * this.pageSize) + this.pageSize);
+    });
     this.ps.notify.subscribe(flag => this.RefreshProductList());
   }
 

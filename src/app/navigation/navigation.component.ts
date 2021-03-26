@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -27,14 +28,30 @@ import { map, shareReplay } from 'rxjs/operators';
     
   `]
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
-
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  loading: boolean;
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router) { }
+  ngOnInit(): void {
+    this.router.events.subscribe((event: RouterEvent) => {
+      switch (true) {
+        case event instanceof NavigationStart:
+          this.loading = true;
+          break;
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationError:
+        case event instanceof NavigationCancel: {
+          this.loading = false;
+        }
+        default:
+          break;
+      }
+    });
+  }
 
 }

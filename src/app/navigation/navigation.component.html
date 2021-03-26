@@ -1,8 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <!-- <a mat-list-item href="home">Home</a>
@@ -15,16 +13,14 @@
   </mat-sidenav>
   <mat-sidenav-content color="accent">
     <mat-toolbar color="accent">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        >
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>SplashBIApp</span>
     </mat-toolbar>
+    <mat-progress-bar *ngIf="loading" class="example-margin" color="warn" mode="indeterminate">
+    </mat-progress-bar>
+    <mat-spinner *ngIf="loading" ></mat-spinner>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -13,10 +13,11 @@ import { ProductGuard } from '../products/services/product.guard';
 import { InvalidComponent } from './invalid/invalid.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDeactivateGuard } from '../products/services/product-deactivate.guard';
+import { ProductsResolver } from '../products/services/products.resolver';
 
 const routes: Routes = [
   {
-    path: "productsmanager", component: ListComponent, children: [
+    path: "productsmanager", component: ListComponent, resolve:{productsList:ProductsResolver}, children: [
       { path: "new", component: AddComponent, canDeactivate: [ProductDeactivateGuard] },
       { path: "invalid", component: InvalidComponent },
       { path: ":id", component: DetailsComponent, canActivate: [ProductGuard] },
