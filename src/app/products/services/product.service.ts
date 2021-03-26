@@ -40,19 +40,8 @@ export class ProductService {
     return this.http.post(this.baseUrl + "AddProduct", product);
   }
 
-  updateProduct(product) {
-    let imgs = [];
-    product.imageurls.forEach(element => {
-      imgs.push({ imageUrl: element });
-    });
-    product.ImageUrls = imgs;
-    let tgs = [];
-    product.Tags.forEach(element => {
-      tgs.push({ tag: element });
-    });
-    product.Tags = tgs;
-    product.typeId = product.type;
-    return this.http.post(this.baseUrl + "AddProduct", product);
+  updateProduct(product:Product) {
+    return this.http.put(this.baseUrl + "UpdateProduct", product);
   }
 
   deleteProduct(id:number) {

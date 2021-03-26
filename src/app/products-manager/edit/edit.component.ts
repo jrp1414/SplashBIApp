@@ -1,9 +1,8 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Product, TypeMaster } from 'src/app/products/services/product.model';
+import { ImageUrl, Product, Tag, TypeMaster } from 'src/app/products/services/product.model';
 import { ProductService } from 'src/app/products/services/product.service';
 import { RangeValidator } from 'src/app/shared/validators/range.validator';
 
@@ -27,16 +26,16 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.productForm = this.fb.group({
       title: ["", [Validators.required, Validators.minLength(3)]],
-      type: "",
+      typeId: "",
       description: "",
       availibility: "",
       releaseDate: "",
       safeFor: "",
       qualityScore: "",
-      Tags: [],
+      tags: [],
       price: [0, RangeValidator(0, 1000)],
       rating: [0, Validators.min(1)],
-      ImageUrls: this.imageUrls,
+      imageurls: this.imageUrls,
       Addresses: this.Sellers
     });
     this.ps.getCategories().subscribe(p => {
@@ -80,6 +79,7 @@ export class EditComponent implements OnInit {
     let sellers = this.productForm.get("Addresses") as FormArray;
     if (sellers.controls.length < 3) {
       sellers.push(this.fb.group({
+        id: "",
         AddLine1: ["", Validators.required],
         AddLine2: "",
         AddLine3: "",
@@ -107,7 +107,35 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.ps.addProduct(this.productForm.value).subscribe(resp => {
+    var form = this.productForm.value as Product;
+    var tags: Tag[] = [];
+    form.tags.forEach(t => {
+      var tg = this.product.Tags.find((tg: Tag) => tg.tag == t);
+      if (tg) {
+        tags.push(tg);
+      } else {
+        tags.push({ tag: t });
+      }
+    });
+
+    var imgs: ImageUrl[] = [];
+    form.imageurls.forEach(i => {
+      var img = this.product.ImageUrls.find((im: ImageUrl) => im.imageUrl == i);
+      if (img) {
+        imgs.push(img);
+      } else {
+        imgs.push({ imageUrl: i });
+      }
+    });
+
+    var prod: Product = {
+      ...this.productForm.value,
+      Tags: tags,
+      ImageUrls: imgs
+    }
+
+    this.ps.updateProduct(prod).subscribe(resp => {
+      this.ps.notify.emit(true);
       this.router.navigate(["/productsmanager"]);
     });
   }
@@ -120,12 +148,13 @@ export class EditComponent implements OnInit {
     return value;
   }
 
-  populateForm(){
+  populateForm() {
     this.product.ImageUrls.forEach(i => {
-      (<FormArray>this.productForm.get("ImageUrls")).push(this.fb.control(""));
+      (<FormArray>this.productForm.get("imageurls")).push(this.fb.control(""));
     });
     this.product.Addresses.forEach(element => {
       (<FormArray>this.productForm.get("Addresses")).push(this.fb.group({
+        id: "",
         AddLine1: ["", Validators.required],
         AddLine2: "",
         AddLine3: "",
@@ -134,9 +163,9 @@ export class EditComponent implements OnInit {
       }));
     });
     this.productForm.patchValue(this.product);
-    this.productForm.get("Tags").patchValue(this.product.Tags.map(m => m.tag));
+    this.productForm.get("tags").patchValue(this.product.Tags.map(m => m.tag));
     this.productForm.get("safeFor").patchValue(this.product.safeFor.toString());
-    this.productForm.get("ImageUrls").patchValue(this.product.ImageUrls.map(m => m.imageUrl));
+    this.productForm.get("imageurls").patchValue(this.product.ImageUrls.map(m => m.imageUrl));
   }
 
 }

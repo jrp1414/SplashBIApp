@@ -1,4 +1,5 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container" style="background-color: slategrey;">
+    <input type="hidden" formControlName="id">
     <div class="row">
         <div class="col-md-4">
             <mat-form-field appearance="fill">
@@ -12,7 +13,7 @@
         <div class="col-md-4">
             <mat-form-field appearance="fill">
                 <mat-label>Type</mat-label>
-                <mat-select formControlName="type">
+                <mat-select formControlName="typeId">
                     <mat-option *ngFor="let type of types" [value]="type.id">{{type.Type | uppercase}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -48,7 +49,7 @@
         </div>
         <div class="col-md-4">
             <mat-label style="margin-right: 10px;">Tags</mat-label>
-            <p-chips formControlName="Tags" separator=","></p-chips>
+            <p-chips formControlName="tags" separator=","></p-chips>
         </div>
         <div class="col-md-4">
             <mat-form-field appearance="fill">
@@ -72,7 +73,7 @@
             <div class="col-md-2">
                 <button type="button" (click)="AddImage()" class="btn btn-primary">Add Image</button>
             </div>
-            <div class="col-md-4" formArrayName="ImageUrls" *ngFor="let control of imageUrls.controls;let i=index;">
+            <div class="col-md-4" formArrayName="imageurls" *ngFor="let control of imageUrls.controls;let i=index;">
                 <mat-form-field appearance="fill">
                     <input matInput type="url" [formControlName]="i">
                 </mat-form-field>
@@ -93,6 +94,7 @@
         </div>
         <div class="card-body" formArrayName="Addresses" *ngFor="let group of Sellers.controls;let i=index">
             <div class="row" [formGroupName]="i">
+                <input type="hidden" formControlName="id">
                 <div class="col-md-4">
                     <mat-form-field appearance="fill">
                         <mat-label>Line 1</mat-label>
