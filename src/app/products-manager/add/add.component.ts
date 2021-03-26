@@ -35,7 +35,7 @@ export class AddComponent implements OnInit {
       qualityScore: "",
       Tags: [],
       // price: [0, rangeValidator],
-      price: [0, RangeValidator(0, 1000)],
+      price: [0],
       rating: [0, Validators.min(1)],
       imageurls: this.imageUrls,
       Addresses: this.Sellers

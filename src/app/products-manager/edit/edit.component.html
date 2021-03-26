@@ -74,8 +74,9 @@
                 <button type="button" (click)="AddImage()" class="btn btn-primary">Add Image</button>
             </div>
             <div class="col-md-4" formArrayName="imageurls" *ngFor="let control of imageUrls.controls;let i=index;">
-                <mat-form-field appearance="fill">
-                    <input matInput type="url" [formControlName]="i">
+                <mat-form-field appearance="fill" [formGroupName]="i">
+                    <input type="hidden" formControlName="id">
+                    <input matInput type="url" formControlName="imageUrl">
                 </mat-form-field>
                 <button mat-icon-button (click)="RemoveControl(i)">
                     <mat-icon>delete</mat-icon>
