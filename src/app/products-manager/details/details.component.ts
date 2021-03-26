@@ -12,13 +12,16 @@ import { ProductService } from 'src/app/products/services/product.service';
 export class DetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-    private ps: ProductService, private router:Router) { }
+    private ps: ProductService, private router: Router) { }
   product: Product;
   ngOnInit(): void {
     // this.product = this.ps.getProduct(this.route.snapshot.params.id);
 
     this.route.params.subscribe((p) => {
-      this.product = this.ps.getProduct(p.id);
+      this.ps.getProduct(p.id).subscribe(p => {
+        this.product = <Product>p;
+        console.log(this.product);
+      });
     });
   }
 

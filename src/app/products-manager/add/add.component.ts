@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { TypeMaster } from 'src/app/products/services/product.model';
 import { ProductService } from 'src/app/products/services/product.service';
 import { RangeValidator } from 'src/app/shared/validators/range.validator';
 
@@ -15,10 +17,10 @@ export class AddComponent implements OnInit {
   productForm: FormGroup;
   imageUrls: FormArray = this.fb.array([]);
   Sellers: FormArray = this.fb.array([]);
-  types: string[] = [];
+  types: TypeMaster[] = [];
   imageDisplay: string = "";
   constructor(private fb: FormBuilder, private ps: ProductService,
-    private toast: MessageService) { }
+    private toast: MessageService, private router: Router) { }
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
@@ -31,15 +33,17 @@ export class AddComponent implements OnInit {
       releaseDate: "",
       safeFor: "",
       qualityScore: "",
-      tags: [],
+      Tags: [],
       // price: [0, rangeValidator],
-      price: [0, RangeValidator(0, 95)],
+      price: [0, RangeValidator(0, 1000)],
       rating: [0, Validators.min(1)],
       imageurls: this.imageUrls,
-      sellers: this.Sellers
+      Addresses: this.Sellers
     });
 
-    this.types = this.ps.getCategories();
+    this.ps.getCategories().subscribe(p => {
+      this.types = <TypeMaster[]>p;
+    });
 
     // this.productForm.get("imageurl").valueChanges.subscribe(v => this.imageDisplay = v);
     this.productForm.get("availibility").valueChanges.subscribe(v => {
@@ -71,7 +75,7 @@ export class AddComponent implements OnInit {
   }
 
   AddSeller() {
-    let sellers = this.productForm.get("sellers") as FormArray;
+    let sellers = this.productForm.get("Addresses") as FormArray;
     if (sellers.controls.length < 3) {
       sellers.push(this.fb.group({
         AddLine1: ["", Validators.required],
@@ -98,12 +102,15 @@ export class AddComponent implements OnInit {
   }
 
   RemoveAddress(index) {
-    let sellers = this.productForm.get("sellers") as FormArray;
+    let sellers = this.productForm.get("Addresses") as FormArray;
     sellers.removeAt(index);
   }
 
   onSubmit() {
-    console.log(this.productForm.value);
+    this.ps.addProduct(this.productForm.value).subscribe(resp => {
+      this.ps.notify.emit(true);
+      this.router.navigate(["/productsmanager"]);
+    });
   }
 
   formatLabel(value: number) {

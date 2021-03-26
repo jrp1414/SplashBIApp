@@ -16,6 +16,7 @@ import { PrimengModule } from './ui-libs/primeng/primeng.module';
 import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     ProductsModule,
     SharedModule,
     ProductsManagerModule,

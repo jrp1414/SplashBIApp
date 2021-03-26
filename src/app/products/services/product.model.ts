@@ -6,21 +6,39 @@ export class Product {
     availibility:boolean;
     safeFor:number;
     qualityScore:number;
-    tags:string[];
+    Tags:Tag[];
     seller?:SellerAddress;
+    Addresses?:SellerAddress[];
     price?: number;
     rating?: number;
+    releaseDate?:Date;
     imageurl?: string;
-    imageurls?: string;
-    currencycode?:string
+    ImageUrls?: ImageUrl[];
+    currencycode?:string;
 }
 
 export class SellerAddress{
+    id:number;
     AddLine1:string;
     AddLine2:string;
     AddLine3:string;
     City:string;
     State:string;
+}
+
+export class ImageUrl{
+    id:number;
+    imageUrl:string;
+}
+
+export class Tag{
+    id:number;
+    tag:string;
+}
+
+export class TypeMaster{
+    id:number;
+    Type:string;
 }
 
 // "id":1,

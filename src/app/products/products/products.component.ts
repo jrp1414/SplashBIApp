@@ -18,7 +18,7 @@ export class ProductsComponent {
   constructor(private logger: LoggerService, private ps: ProductService) {
     // let logger = new LoggerService();
     // logger.log("Test LOg");
-    this.productList = this.ps.getProducts();
+    // this.productList = this.ps.getProducts();
   }
 
   filterText: string = "";

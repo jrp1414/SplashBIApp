@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { LoggerService } from 'src/app/shared/services/logger.service';
 import { Product } from './product.model';
@@ -8,19 +9,53 @@ import * as productsJson from "./products.json";
 })
 export class ProductService {
   private prods: Product[] = (productsJson as any).default
-  constructor(private logger: LoggerService) { }
+  constructor(private logger: LoggerService, private http: HttpClient) { }
+  baseUrl: string = "http://localhost:64403/";
 
   notify: EventEmitter<boolean> = new EventEmitter();
-  getProducts(): Product[] {
-    this.logger.log("Get Products called");
-    return this.prods;
+  getProducts() {
+    return this.http.get(this.baseUrl + "GetProducts");
   }
 
-  getProduct(id: number): Product {
-    return this.prods.find(p => p.id == id);
+  getProduct(id: number) {
+    return this.http.get(this.baseUrl + "GetProduct?productId=" + id);
   }
 
-  getCategories(): string[] {
-    return [...new Set(this.prods.map(p=>p.type))];    
+  getCategories() {
+    return this.http.get(this.baseUrl + "GetTypes");
+  }
+
+  addProduct(product) {
+    let imgs = [];
+    product.imageurls.forEach(element => {
+      imgs.push({ imageUrl: element });
+    });
+    product.ImageUrls = imgs;
+    let tgs = [];
+    product.Tags.forEach(element => {
+      tgs.push({ tag: element });
+    });
+    product.Tags = tgs;
+    product.typeId = product.type;
+    return this.http.post(this.baseUrl + "AddProduct", product);
+  }
+
+  updateProduct(product) {
+    let imgs = [];
+    product.imageurls.forEach(element => {
+      imgs.push({ imageUrl: element });
+    });
+    product.ImageUrls = imgs;
+    let tgs = [];
+    product.Tags.forEach(element => {
+      tgs.push({ tag: element });
+    });
+    product.Tags = tgs;
+    product.typeId = product.type;
+    return this.http.post(this.baseUrl + "AddProduct", product);
+  }
+
+  deleteProduct(id:number) {
+    return this.http.delete(this.baseUrl + "DeleteProduct?productId="+id);
   }
 }
