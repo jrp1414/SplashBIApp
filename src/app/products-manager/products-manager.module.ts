@@ -14,10 +14,11 @@ import { InvalidComponent } from './invalid/invalid.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDeactivateGuard } from '../products/services/product-deactivate.guard';
 import { ProductsResolver } from '../products/services/products.resolver';
+import { CoreModule } from '../core/core.module';
 
 const routes: Routes = [
   {
-    path: "productsmanager", component: ListComponent, resolve:{productsList:ProductsResolver}, children: [
+    path: "", component: ListComponent, resolve:{productsList:ProductsResolver}, children: [
       { path: "new", component: AddComponent, canDeactivate: [ProductDeactivateGuard] },
       { path: "invalid", component: InvalidComponent },
       { path: ":id", component: DetailsComponent, canActivate: [ProductGuard] },
@@ -30,12 +31,8 @@ const routes: Routes = [
   declarations: [ListComponent, DetailsComponent, EditComponent, AddComponent, InvalidComponent],
   imports: [
     CommonModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    PrimengModule,
+    CoreModule,
     SharedModule,
-    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
 })

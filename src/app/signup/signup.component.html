@@ -58,58 +58,7 @@
                 <mat-error *ngIf="ConfirmPassword.errors?.match">Both Passwords not matching</mat-error>
             </mat-form-field>
         </div>
-    </div>
-    <div class="row" ngModelGroup="Details">
-        <div class="col-md-4">
-            <mat-form-field appearance="fill">
-                <mat-label>State</mat-label>
-                <mat-select name="State" #State="ngModel" required ngModel (selectionChange)="stateChanged($event)">
-                    <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
-                </mat-select>
-                <mat-error *ngIf="State.errors?.required">State is required</mat-error>
-            </mat-form-field>
-        </div>
-        <div *ngIf="cities.length>0" class="col-md-4">
-            <mat-form-field appearance="fill">
-                <mat-label>City</mat-label>
-                <mat-select name="City" ngModel>
-                    <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-checkbox name="TermsAndConditions" ngModel>Terms and Conditions</mat-checkbox>
-        </div>
-        <div class="col-md-4">
-            <label>Gender: </label>
-            <mat-radio-group name="Gender" ngModel>
-                <mat-radio-button value="male">Male</mat-radio-button>
-                <mat-radio-button value="female">Female</mat-radio-button>
-            </mat-radio-group>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field appearance="fill">
-                <mat-label>Date of Birth</mat-label>
-                <input matInput name="DOB" ngModel [matDatepicker]="picker">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field appearance="fill">
-                <mat-label>Skills</mat-label>
-                <mat-select name="Skills" ngModel #Skills="ngModel" multiple>
-                    <mat-select-trigger>
-                        {{Skills.value ? Skills.value[0] : ''}}
-                        <span *ngIf="Skills.value?.length > 1" class="example-additional-selection">
-                            (+{{Skills.value.length - 1}} {{Skills.value?.length === 2 ? 'other' : 'others'}})
-                        </span>
-                    </mat-select-trigger>
-                    <mat-option *ngFor="let skill of skillsList" [value]="skill">{{skill}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </div>
+    </div>    
     <button type="submit" [disabled]="signUp.invalid" class="btn btn-primary">Submit</button>
     <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 </form>

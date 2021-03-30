@@ -7,6 +7,11 @@ const routes: Routes = [
   { path: "home", component: DashboardComponent },
   { path: "shop", component: ProductsComponent },
   { path: "signup", component: SignupComponent },
+  {
+    path: "productsmanager",
+    loadChildren: () => import("./products-manager/products-manager.module")
+      .then(m => m.ProductsManagerModule)
+  },
   { path: "", component: DashboardComponent },
   { path: "**", redirectTo: "home" }
 ];
@@ -15,8 +20,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes)
   ],
-  exports:[
-    RouterModule    
+  exports: [
+    RouterModule
   ]
 })
 export class AppRoutingModule { }

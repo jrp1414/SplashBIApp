@@ -1,5 +1,5 @@
 <div class="card text-white bg-success" style="max-width: 350px; max-height: 400px;">
-    <img class="card-img-top" [src]="product.imageurl" alt="">
+    <img *ngFor="let img of product.ImageUrls" class="card-img-top" [src]="img.imageUrl" alt="">
     <div class="card-body">
         <h4 class="card-title">{{product.title | uppercase}}</h4>
         <!-- {{product | json}} -->

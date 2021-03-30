@@ -17,6 +17,7 @@ import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -31,16 +32,12 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpClientModule,
+    CoreModule,
+    BrowserAnimationsModule,
     ProductsModule,
     SharedModule,
-    ProductsManagerModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    PrimengModule,
-    LayoutModule
+    
   ],
   providers: [LoggerService, MessageService],
   bootstrap: [AppComponent]
