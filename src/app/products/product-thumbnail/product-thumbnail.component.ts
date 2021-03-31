@@ -24,7 +24,7 @@ export class ProductThumbnailComponent implements OnInit {
   }
 
   AddToCart() {
-    this.logger.log(this.product.title + " added to cart");
+    // this.logger.log(this.product.title + " added to cart");
     this.send.emit(this.product.title);
   }
 

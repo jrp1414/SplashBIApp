@@ -18,6 +18,13 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './store/cart.reducer';
+import { metaReducers } from './store/meta-reducer';
+
+const routes:Routes=[
+  
+];
 
 @NgModule({
   declarations: [
@@ -34,12 +41,23 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     CoreModule,
     BrowserAnimationsModule,
-    ProductsModule,
     SharedModule,
     AppRoutingModule,
-    
+    ProductsModule,
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot({cartR:cartReducer}),
+    //productdetails:id
+    //** - Redirect to Home */
+    //home = Dashboard
+    //shop - ProductsComponent
+    //
+    //
   ],
   providers: [LoggerService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
+

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { LoggerService } from 'src/app/shared/services/logger.service';
+import { cartAction, CartInfo } from 'src/app/store/cart.action';
 import { Product } from '../services/product.model';
 import { ProductService } from '../services/product.service';
 import * as productsJson from "../services/products.json";
@@ -12,13 +14,21 @@ import * as productsJson from "../services/products.json";
     // LoggerService, ProductService
   ]
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
   productList: Product[] = [];
   product: Product;
-  constructor(private logger: LoggerService, private ps: ProductService) {
+  constructor(private logger: LoggerService,
+    private ps: ProductService,
+    private store: Store) {
     // let logger = new LoggerService();
     // logger.log("Test LOg");
-    // this.productList = this.ps.getProducts();
+    this.ps.getProducts().subscribe(products => this.productList = products as Product[]);
+  }
+  ngOnInit(): void {
+    this.store.subscribe(s => {
+      let titles = (<CartInfo>s["cartR"]).titles;
+      this.cartProducts = titles?titles:[];
+    });
   }
 
   filterText: string = "";
@@ -43,7 +53,11 @@ export class ProductsComponent {
 
   cartProducts: string[] = [];
   Received(data) {
-    this.cartProducts.push(data);
+    //this.cartProducts = Object.assign([],this.cartProducts);
+    this.cartProducts = [...this.cartProducts, data];
+    //this.cartProducts.push(data);
+    var cart: CartInfo = { titles: this.cartProducts };
+    this.store.dispatch(cartAction({ cart }));
   }
 
   extension: string = ".pdf";

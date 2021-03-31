@@ -24,7 +24,7 @@
 
     </div>
     <div class="row">
-        <div class="col-md-3" *ngFor="let prod of productList | filter : filterText : 'title'">
+        <div class="col-md-3" *ngFor="let prod of productList">
             <!-- <product-thumbnail [routerLink]="['/productdetails',prod.id,prod.title]" [pd]="prod" (sd)="Received($event)"></product-thumbnail> -->
             <!-- <product-thumbnail [routerLink]="['/productdetails',prod.id,{title:prod.title,type:prod.type}]" [pd]="prod" (sd)="Received($event)"></product-thumbnail> -->
             <!-- <product-thumbnail [routerLink]="['/productdetails',prod.id]"
@@ -33,7 +33,7 @@
             <!-- <product-thumbnail [routerLink]="['/productdetails',prod.id]"
                 [fragment]="prod.title" [pd]="prod" (sd)="Received($event)">
             </product-thumbnail> -->
-            <product-thumbnail [routerLink]="['/productdetails',prod.id]" [pd]="prod" (sd)="Received($event)"></product-thumbnail>
+            <product-thumbnail [pd]="prod" (sd)="Received($event)"></product-thumbnail>
         </div>
     </div>
 </div>
