@@ -1,0 +1,31 @@
+<button mat-icon-button (click)="Close()" >
+    <mat-icon>close</mat-icon>
+  </button>
+<form #logIn="ngForm" (ngSubmit)="onSubmit(logIn.value)" class="container">
+    <h3>Log In </h3>
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" required #Email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" matInput
+                    name="EmailId" ngModel>
+                <mat-error *ngIf="Email.errors?.required">Email is required</mat-error>
+                <mat-error *ngIf="Email.errors?.pattern">Invalid Email Id</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput required [type]="hide ? 'password' : 'text'" #Password="ngModel" name="Password"
+                    ngModel>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="Password.errors?.required">Password is required</mat-error>
+            </mat-form-field>
+        </div>
+
+    </div>
+    <button type="submit" [disabled]="logIn.invalid" class="btn btn-primary">Submit</button>
+</form>

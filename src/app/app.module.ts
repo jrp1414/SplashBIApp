@@ -16,14 +16,18 @@ import { PrimengModule } from './ui-libs/primeng/primeng.module';
 import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './store/cart.reducer';
-import { metaReducers } from './store/meta-reducer';
+import { metaReducers, reducers } from './store/meta-reducer';
+import { LoginComponent } from './login/login.component';
+import { TokenInterceptor } from './products/services/token.interceptor';
+import { ErrorInterceptor } from './products/services/error.interceptor';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
-const routes:Routes=[
-  
+const routes: Routes = [
+
 ];
 
 @NgModule({
@@ -35,7 +39,8 @@ const routes:Routes=[
     TwowayBindingComponent,
     NavigationComponent,
     DashboardComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,7 @@ const routes:Routes=[
     AppRoutingModule,
     ProductsModule,
     RouterModule.forRoot(routes),
-    StoreModule.forRoot({cartR:cartReducer}),
+    StoreModule.forRoot({ cartR: reducers }, { metaReducers }),
     //productdetails:id
     //** - Redirect to Home */
     //home = Dashboard
@@ -53,7 +58,13 @@ const routes:Routes=[
     //
     //
   ],
-  providers: [LoggerService, MessageService],
+  providers: [
+    LoggerService, 
+    MessageService,
+    {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
-<form #signUp="ngForm" [mustMatch]="['Password','ConfirmPassword']" 
-    (ngSubmit)="onSubmit(signUp.value)" class="container">
+<form #signUp="ngForm" [mustMatch]="['Password','ConfirmPassword']" (ngSubmit)="onSubmit(signUp.value)"
+    class="container">
     <div class="row">
         <div class="col-md-4">
             <mat-form-field appearance="fill">
@@ -18,6 +18,15 @@
         </div>
         <div class="col-md-4">
             <mat-form-field appearance="fill">
+                <mat-label>Role</mat-label>
+                <mat-select name="RoleId" ngModel>
+                    <mat-option value="1">Admin</mat-option>
+                    <mat-option value="2">User</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
                 <mat-label>Address</mat-label>
                 <textarea matInput name="Address" ngModel></textarea>
             </mat-form-field>
@@ -25,8 +34,8 @@
         <div class="col-md-4">
             <mat-form-field appearance="fill">
                 <mat-label>Email</mat-label>
-                <input type="email" required emailMatch #Email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" matInput
-                    name="Email" ngModel>
+                <input type="email" required emailMatch #Email="ngModel"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" matInput name="EmailId" ngModel>
                 <mat-error *ngIf="Email.errors?.required">Email is required</mat-error>
                 <mat-error *ngIf="Email.errors?.pattern">Invalid Email Id</mat-error>
                 <mat-error *ngIf="Email.errors?.emailMatch">Email Id is already registered</mat-error>
@@ -58,7 +67,7 @@
                 <mat-error *ngIf="ConfirmPassword.errors?.match">Both Passwords not matching</mat-error>
             </mat-form-field>
         </div>
-    </div>    
+    </div>
     <button type="submit" [disabled]="signUp.invalid" class="btn btn-primary">Submit</button>
     <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 </form>

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   states: string[] = [];
   cities: string[] = [];
   skillsList: string[] = [];
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private router:Router) { }
   ngOnInit(): void {
     this.states = this.userService.getStates();
     this.skillsList = this.userService.getSkills();
@@ -21,10 +22,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // console.log(this.form);
   }
- 
+
   onSubmit(value) {
     // console.log(this.form);
-    console.log(JSON.stringify(value));
+    this.userService.signUpUser(value).subscribe(resp=>this.router.navigate(["/home"]));
   }
 
   stateChanged(state) {

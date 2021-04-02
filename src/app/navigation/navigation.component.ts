@@ -3,6 +3,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
+import { UserService } from '../shared/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-navigation',
@@ -36,7 +39,11 @@ export class NavigationComponent implements OnInit {
       shareReplay()
     );
   loading: boolean;
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router) { }
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private router: Router,
+    public us: UserService,
+    public dialog: MatDialog) { }
   ngOnInit(): void {
     this.router.events.subscribe((event: RouterEvent) => {
       switch (true) {
@@ -53,5 +60,21 @@ export class NavigationComponent implements OnInit {
       }
     });
   }
+
+  Login(){
+    this.dialog.open(LoginComponent, {
+      width: '450px',
+      height:"300px",
+      
+      data: {name: "Test", animal: "Test"}
+    });
+  }
+
+  LogOut() {
+    localStorage.clear();
+    this.us.userInfo={};
+  }
+
+
 
 }

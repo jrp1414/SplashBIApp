@@ -7,8 +7,11 @@
       <a mat-list-item href="shop">Shop</a> -->
       <a mat-list-item routerLink="/home">Home</a>
       <a mat-list-item routerLink="/shop">Shop</a>
-      <a mat-list-item routerLink="/productsmanager">Products Manager</a>
+      <a mat-list-item *ngIf="us.userInfo?.role=='admin'" routerLink="/productsmanager">Products Manager</a>
       <a mat-list-item routerLink="/signup">Sign Up</a>
+      <a mat-list-item (click)="Login()">Log In</a>
+      <a mat-list-item (click)="LogOut()">Log Out</a>
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content color="accent">
