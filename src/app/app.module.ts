@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from "@angular/router";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import {
   AppComponent, StringInterpolationComponent, PropertyBindingComponent, EventBindingComponent, TwowayBindingComponent, NavigationComponent, DashboardComponent, SignupComponent, ProductsComponent
 } from "./app.index";
@@ -9,10 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { ProductsModule } from './products/products.module';
 import { LoggerService } from './shared/services/logger.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './ui-libs/material/material.module';
-import { LayoutModule } from '@angular/cdk/layout';
-import { ProductsManagerModule } from './products-manager/products-manager.module';
-import { PrimengModule } from './ui-libs/primeng/primeng.module';
 import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +21,13 @@ import { LoginComponent } from './login/login.component';
 import { TokenInterceptor } from './products/services/token.interceptor';
 import { ErrorInterceptor } from './products/services/error.interceptor';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { Ad1Component } from './Advertises/ad1/ad1.component';
+import { Ad2Component } from './Advertises/ad2/ad2.component';
+import { Ad3Component } from './Advertises/ad3/ad3.component';
+import { AdDirective } from './Advertises/ad.directive';
+import { AdHolderComponent } from './Advertises/ad-holder/ad-holder.component';
+import { AdGroup2Component } from './Advertises/ad-group2/ad-group2.component';
+import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 
 const routes: Routes = [
 
@@ -40,23 +43,25 @@ const routes: Routes = [
     NavigationComponent,
     DashboardComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    Ad1Component,
+    Ad2Component,
+    Ad3Component,
+    AdDirective,
+    AdHolderComponent,
+    AdGroup2Component
   ],
   imports: [
     BrowserModule,
-    CoreModule,
     BrowserAnimationsModule,
+    CoreModule,
     SharedModule,
     AppRoutingModule,
     ProductsModule,
-    RouterModule.forRoot(routes),
-    StoreModule.forRoot({ cartR: reducers }, { metaReducers }),
-    //productdetails:id
-    //** - Redirect to Home */
-    //home = Dashboard
-    //shop - ProductsComponent
-    //
-    //
+    QuicklinkModule,
+    // RouterModule.forRoot(routes,{preloadingStrategy:PreloadAllModules}),
+    RouterModule.forRoot(routes,{preloadingStrategy:QuicklinkStrategy}),
+    StoreModule.forRoot({ cartR: reducers }, { metaReducers })
   ],
   providers: [
     LoggerService, 

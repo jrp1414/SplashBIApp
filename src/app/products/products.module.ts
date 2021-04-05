@@ -9,6 +9,7 @@ import { TempProductsComponent } from './temp-products/temp-products.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
+
 const routes: Routes = [
   // { path: "productdetails/:id/:title", component: ProductDetailsComponent }
   { path: "productdetails/:id", component: ProductDetailsComponent }
@@ -24,9 +25,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    SharedModule,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class ProductsModule { }
