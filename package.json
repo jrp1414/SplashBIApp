@@ -30,6 +30,9 @@
     "primeng": "^11.3.0",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.6",
+    "sblib": "file:../SplashBIWorkspace/dist/sblib/sblib-0.0.1.tgz",
+    "splash-biworkspace": "file:../SplashBIWorkspace/splash-biworkspace-0.0.0.tgz",
+    "test-lib-jrp1414": "file:../testWorkspace/dist/test-lib/test-lib-jrp1414-0.0.1.tgz",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-ad1',
   template: `
-    <mat-card class="dashboard-card" style="background-color:yellow;color:blue">
+    <mat-card class="dashboard-card" style="background-color:pink;color:blue">
         <mat-card-header>
           <mat-card-title>
             <h3>{{data.title}}</h3>
@@ -18,6 +18,7 @@ import { Component, OnInit, Input } from '@angular/core';
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <div>{{data.details | shorten}}</div>
+          <div basic-highlight>Basic Highlight</div>
         </mat-card-content>
       </mat-card>
   `,

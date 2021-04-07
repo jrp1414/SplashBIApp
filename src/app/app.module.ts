@@ -28,10 +28,11 @@ import { AdDirective } from './Advertises/ad.directive';
 import { AdHolderComponent } from './Advertises/ad-holder/ad-holder.component';
 import { AdGroup2Component } from './Advertises/ad-group2/ad-group2.component';
 import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+import { SBLibModule } from 'sblib';
+import {TestLibModule} from "test-lib-jrp1414";
+import { IframExComponent } from './ifram-ex/ifram-ex.component';
 
-const routes: Routes = [
 
-];
 
 @NgModule({
   declarations: [
@@ -49,18 +50,19 @@ const routes: Routes = [
     Ad3Component,
     AdDirective,
     AdHolderComponent,
-    AdGroup2Component
+    AdGroup2Component,
+    IframExComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
+    // SBLibModule,
+    TestLibModule,
     SharedModule,
     AppRoutingModule,
     ProductsModule,
     QuicklinkModule,
-    // RouterModule.forRoot(routes,{preloadingStrategy:PreloadAllModules}),
-    RouterModule.forRoot(routes,{preloadingStrategy:QuicklinkStrategy}),
     StoreModule.forRoot({ cartR: reducers }, { metaReducers })
   ],
   providers: [

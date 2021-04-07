@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { QuicklinkStrategy } from 'ngx-quicklink';
 import { AdGroup2Component } from './Advertises/ad-group2/ad-group2.component';
 import { AdHolderComponent } from './Advertises/ad-holder/ad-holder.component';
 import { DashboardComponent, ProductsComponent, SignupComponent } from './app.index';
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   {
     path: "productsmanager",
-    loadChildren: () => import("./products-manager/products-manager.module")
+    loadChildren: () => import('./products-manager/products-manager.module')
       .then(m => m.ProductsManagerModule)
   },
   { path: "", component: DashboardComponent },
@@ -25,10 +26,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forRoot(routes,{preloadingStrategy:QuicklinkStrategy})
   ],
   exports: [
-    // RouterModule
+    RouterModule
   ]
 })
 export class AppRoutingModule { }

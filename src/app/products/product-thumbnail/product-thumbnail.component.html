@@ -3,7 +3,7 @@
     <div class="card-body">
         <h4 class="card-title">{{product.title | uppercase}}</h4>
         <!-- {{product | json}} -->
-        <p class="card-text">{{product.description | lowercase | shorten}}</p>
+        <p class="card-text">{{product.description | lowercase }}</p>
         <p class="card-text">{{product.price | currency : (product.currencycode?product.currencycode:'USD') : 'symbol' }}</p>
         <p class="card-text">{{date | date :'MM-dd-yyyy' }}</p>
         <button type="button" (click)="AddToCart()" class="btn btn-primary">Add To Cart</button>

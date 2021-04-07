@@ -17,7 +17,7 @@ import { Component, Input, OnInit } from '@angular/core';
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-        <div>{{data.details}}</div>
+        <div>{{data.details | shorten }}</div>
         </mat-card-content>
       </mat-card>
   `,

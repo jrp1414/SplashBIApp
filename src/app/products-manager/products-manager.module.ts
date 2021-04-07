@@ -12,6 +12,9 @@ import { SharedModule } from '../shared/shared.module';
 import { ProductDeactivateGuard } from '../products/services/product-deactivate.guard';
 import { ProductsResolver } from '../products/services/products.resolver';
 import { CoreModule } from '../core/core.module';
+import { SBLibModule } from 'sblib';
+import {TestLibModule} from "test-lib-jrp1414"
+
 
 const routes: Routes = [
   {
@@ -29,6 +32,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     CoreModule,
+    // SBLibModule,
+    TestLibModule,
     SharedModule,
     RouterModule.forChild(routes)
   ]

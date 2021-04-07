@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, ElementRef, EventEmitter, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable, Observer, Subject, Subscription } from 'rxjs';
 import { AdService } from '../Advertises/ad.service';
 import { AdItem } from '../Advertises/ad-Item';
+import { Ad1Component } from '../Advertises/ad1/ad1.component';
+import { IframExComponent } from '../ifram-ex/ifram-ex.component';
 // import { Observable, Subscription } from 'rxjs-compat';
 
 
@@ -37,16 +39,32 @@ import { AdItem } from '../Advertises/ad-Item';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   /** Based on the screen size, switch from standard to one column per row */
-  ads:AdItem[]=[];
-  constructor(private adService:AdService) { 
+  ads: AdItem[] = [];
+  constructor(private adService: AdService,
+    private viewContainerRef: ViewContainerRef, private resolver: ComponentFactoryResolver) {
     this.ads = this.adService.getAds();
   }
-  
+
   ngOnInit(): void {
-    
+
   }
 
   ngOnDestroy(): void {
-    
+
+  }
+
+  @ViewChild("iframe", { static: false }) iframe;
+  doc: any;
+  compRef: ComponentRef<IframExComponent>;
+  onLoad(iframe) {
+    this.doc = iframe.contentDocument || iframe.contentWindow;
+    const compFactory = this.resolver.resolveComponentFactory(IframExComponent);
+    this.compRef = this.viewContainerRef.createComponent(compFactory);
+    this.compRef.location.nativeElement.id = "innerComp";
+    this.compRef.instance.data = "Sample data passed to the iFrame Component"; 
+    this.compRef.instance.emitData.subscribe(data=>{
+      console.log(data);
+    })
+    this.doc.body.appendChild(this.compRef.location.nativeElement);
   }
 }

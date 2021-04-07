@@ -8,6 +8,9 @@ import { SharedModule } from '../shared/shared.module';
 import { TempProductsComponent } from './temp-products/temp-products.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { SBLibModule } from 'sblib';
+import {TestLibModule} from "test-lib-jrp1414";
+import { CoreModule } from '../core/core.module';
 
 
 const routes: Routes = [
@@ -25,6 +28,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    // SBLibModule,
+    CoreModule,
+    TestLibModule,
     RouterModule.forChild(routes),
     FormsModule,
     SharedModule
