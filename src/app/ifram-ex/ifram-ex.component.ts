@@ -8,15 +8,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class IframExComponent implements OnInit {
 
-  @Input() data: any = "";
-  @Output() emitData: EventEmitter<any> = new EventEmitter();
+  // @Input() data: any = "";
+  // @Output() emitData: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
 
   sendData() {
-    this.emitData.emit("Data Emitted from child");
+    // this.emitData.emit("Data Emitted from child");
   }
 
 }

@@ -22,12 +22,13 @@ export class ProductsComponent implements OnInit {
     private store: Store) {
     // let logger = new LoggerService();
     // logger.log("Test LOg");
-    this.ps.getProducts().subscribe(products => this.productList = products as Product[]);
+    this.ps.getProducts().subscribe(products => this.productList = products as Product[]
+      , error => console.error(error));
   }
   ngOnInit(): void {
     this.store.subscribe(s => {
       let titles = (<CartInfo>s["cartR"]).titles;
-      this.cartProducts = titles?titles:[];
+      this.cartProducts = titles ? titles : [];
     });
   }
 

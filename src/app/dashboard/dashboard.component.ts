@@ -1,7 +1,7 @@
 import { Component, ComponentFactoryResolver, ComponentRef, ElementRef, EventEmitter, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Observable, Observer, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Observer, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { AdService } from '../Advertises/ad.service';
 import { AdItem } from '../Advertises/ad-Item';
 import { Ad1Component } from '../Advertises/ad1/ad1.component';
@@ -47,6 +47,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    // let sub1 = new Subject();
+    // sub1.subscribe(data => {
+    //   console.log(`Subject Data : ${data}`);
+    // });
+    // sub1.next("Data 1");
+    // sub1.next("Data 2");
+
+    // let sub2 = new BehaviorSubject(0);
+    // sub2.subscribe(data=>{
+    //   console.log(`Behavior Subject Data : ${data}`);
+    // });
+    // sub2.next(Math.random());
+    // sub2.next(Math.random());
+
+    // let sub3 = new ReplaySubject(2, 2000);
+
+    // sub3.subscribe(data => console.log(`Replay Subject Data : Sub 1 : ${data}`));
+
+    // sub3.next(Math.random());
+    // sub3.next(Math.random());
+    // sub3.next(Math.random());
+
+    // sub3.subscribe(data => console.log(`Replay Subject Data : Sub 2 : ${data}`));
+    // setTimeout(() => {
+    //   sub3.subscribe(data => console.log(`Replay Subject Data : Sub 3 : ${data}`));
+    // }, 3000);
+
+    // sub3.next(Math.random());
   }
 
   ngOnDestroy(): void {
@@ -61,8 +89,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const compFactory = this.resolver.resolveComponentFactory(IframExComponent);
     this.compRef = this.viewContainerRef.createComponent(compFactory);
     this.compRef.location.nativeElement.id = "innerComp";
-    this.compRef.instance.data = "Sample data passed to the iFrame Component"; 
-    this.compRef.instance.emitData.subscribe(data=>{
+    this.compRef.instance.data = "Sample data passed to the iFrame Component";
+    this.compRef.instance.emitData.subscribe(data => {
       console.log(data);
     })
     this.doc.body.appendChild(this.compRef.location.nativeElement);
