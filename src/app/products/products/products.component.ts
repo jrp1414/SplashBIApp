@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { AddToCart } from 'src/app/ngxs-store/cart.action';
+import { CartModel, CartState } from 'src/app/ngxs-store/cart.state';
 import { LoggerService } from 'src/app/shared/services/logger.service';
 import { cartAction, CartInfo } from 'src/app/store/cart.action';
 import { Product } from '../services/product.model';
@@ -20,17 +23,10 @@ export class ProductsComponent implements OnInit {
   constructor(private logger: LoggerService,
     private ps: ProductService,
     private store: Store) {
-    // let logger = new LoggerService();
-    // logger.log("Test LOg");
     this.ps.getProducts().subscribe(products => this.productList = products as Product[]
       , error => console.error(error));
   }
-  ngOnInit(): void {
-    this.store.subscribe(s => {
-      let titles = (<CartInfo>s["cartR"]).titles;
-      this.cartProducts = titles ? titles : [];
-    });
-  }
+
 
   filterText: string = "";
   getStyle(product) {
@@ -53,12 +49,14 @@ export class ProductsComponent implements OnInit {
   }
 
   cartProducts: string[] = [];
+  @Select(CartState) cart$: Observable<CartModel>;
   Received(data) {
-    //this.cartProducts = Object.assign([],this.cartProducts);
-    this.cartProducts = [...this.cartProducts, data];
-    //this.cartProducts.push(data);
-    var cart: CartInfo = { titles: this.cartProducts };
-    this.store.dispatch(cartAction({ cart }));
+    this.store.dispatch(new AddToCart(data));
+  }
+  ngOnInit(): void {
+    this.cart$.subscribe(cartModel => {
+      this.cartProducts = cartModel.cart;
+    });
   }
 
   extension: string = ".pdf";
