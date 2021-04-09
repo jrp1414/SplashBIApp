@@ -31,6 +31,9 @@ import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { SBLibModule } from 'sblib';
 import {TestLibModule} from "test-lib-jrp1414";
 import { IframExComponent } from './ifram-ex/ifram-ex.component';
+import { NgxsModule } from '@ngxs/store';
+import { environment } from 'src/environments/environment';
+import { CartState } from './ngxs-store/cart.state';
 
 
 
@@ -63,6 +66,7 @@ import { IframExComponent } from './ifram-ex/ifram-ex.component';
     AppRoutingModule,
     ProductsModule,
     QuicklinkModule,
+    NgxsModule.forRoot([CartState],{developmentMode:!environment.production}),
     StoreModule.forRoot({ cartR: reducers }, { metaReducers })
   ],
   providers: [
