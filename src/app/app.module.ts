@@ -34,6 +34,9 @@ import { IframExComponent } from './ifram-ex/ifram-ex.component';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from 'src/environments/environment';
 import { CartState } from './ngxs-store/cart.state';
+import { WebWorkerExComponent } from './web-worker-ex/web-worker-ex.component';
+import { TemplateContainerComponent, TestContainerComponent } from './template-container/template-container.component';
+import { ComponentContainerComponent, Tab1Component, Tab2Component, Tab3Component } from './component-container/component-container.component';
 
 
 
@@ -54,12 +57,19 @@ import { CartState } from './ngxs-store/cart.state';
     AdDirective,
     AdHolderComponent,
     AdGroup2Component,
-    IframExComponent
+    IframExComponent,
+    WebWorkerExComponent,
+    TemplateContainerComponent,
+    TestContainerComponent,
+    ComponentContainerComponent,
+    Tab1Component,
+    Tab2Component,
+    Tab3Component 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CoreModule,
+    CoreModule, 
     // SBLibModule,
     TestLibModule,
     SharedModule,

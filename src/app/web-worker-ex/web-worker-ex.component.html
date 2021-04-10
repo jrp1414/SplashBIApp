@@ -1,0 +1,25 @@
+<div class="container">
+    <button type="button" (click)="test()" class="btn btn-primary">Test</button>
+    <div class="row">
+        <div class="col-md-2">
+            <input type="number" [(ngModel)]="number" class="form-control" placeholder="">
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="calcFib()" class="btn btn-primary">Calc Fib</button>
+        </div>
+        <div class="col-md-2">
+            {{output}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <input type="number" [(ngModel)]="numberWorker" class="form-control" placeholder="">
+        </div>
+        <div class="col-md-2">
+            <button type="button" (click)="calcFibWorker()" class="btn btn-primary">Calc Fib Worker</button>
+        </div>
+        <div class="col-md-2">
+            {{outputWorker}}
+        </div>
+    </div>
+</div>

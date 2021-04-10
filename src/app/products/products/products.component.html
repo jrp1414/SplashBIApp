@@ -17,6 +17,11 @@
                 {{filterText}}
             </div>
         </ng-template> -->
+        <ng-template [ngIf]="filterText.length>0">
+            <div class="col-md-2 alert alert-info">
+                {{filterText}}
+            </div>
+        </ng-template>
         <div class="col-md-4">
             <app-cart [products]="cartProducts"></app-cart>
         </div>

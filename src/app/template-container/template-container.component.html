@@ -1,0 +1,17 @@
+<p>template-container works!</p>
+
+<!-- <ul *ngIf="nums">
+    <li *ngFor="let num of nums">{{num}}</li>
+</ul> -->
+
+<!-- <ng-container *ngIf="nums">
+    <li *ngFor="let num of nums">{{num}}</li>
+</ng-container> -->
+
+
+<ng-template #test let-parentData="parentData">
+    <div>Child Template - Parent Data {{parentData}}</div>
+</ng-template>
+<!-- <ng-container *ngTemplateOutlet="test;context:ctx"></ng-container> -->
+
+<container-ex [testTemplate]="test"></container-ex>

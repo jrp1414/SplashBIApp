@@ -1,0 +1,6 @@
+<h3>Component Template Outlet Example</h3>
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab *ngFor="let tab of dynamicTabs" [label]="tab.label">
+        <ng-container *ngComponentOutlet="tab.component; injector:tab.injector"></ng-container>
+    </mat-tab>    
+  </mat-tab-group>
