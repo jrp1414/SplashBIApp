@@ -37,6 +37,7 @@ import { CartState } from './ngxs-store/cart.state';
 import { WebWorkerExComponent } from './web-worker-ex/web-worker-ex.component';
 import { TemplateContainerComponent, TestContainerComponent } from './template-container/template-container.component';
 import { ComponentContainerComponent, Tab1Component, Tab2Component, Tab3Component } from './component-container/component-container.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -77,7 +78,13 @@ import { ComponentContainerComponent, Tab1Component, Tab2Component, Tab3Componen
     ProductsModule,
     QuicklinkModule,
     NgxsModule.forRoot([CartState],{developmentMode:!environment.production}),
-    StoreModule.forRoot({ cartR: reducers }, { metaReducers })
+    StoreModule.forRoot({ cartR: reducers }, { metaReducers }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     LoggerService, 

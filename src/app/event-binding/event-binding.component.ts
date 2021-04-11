@@ -13,11 +13,12 @@ export class EventBindingComponent {
   message: string = "";
 
   buttonClicked() {
-    alert("Button Clicked");
+    this.message = "Button Clicked";
+    // alert("Button Clicked");
   }
   buttonDblClicked() {
-    this.message = "Button Double Clicked";
-    alert("Button Double Clicked");
+    this.message = "Button Double Clicked"; 
+    // alert("Button Double Clicked");
   }
 
   InputText: string = "";

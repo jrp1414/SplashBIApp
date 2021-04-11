@@ -20,9 +20,9 @@ import * as productsJson from "../services/products.json";
 export class ProductsComponent implements OnInit {
   productList: Product[] = [];
   product: Product;
-  constructor(private logger: LoggerService,
-    private ps: ProductService,
-    private store: Store) {
+  constructor(public logger: LoggerService,
+    public ps: ProductService,
+    public store: Store) {
     this.ps.getProducts().subscribe(products => this.productList = products as Product[]
       , error => console.error(error));
   }

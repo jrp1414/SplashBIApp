@@ -6,8 +6,8 @@ export class Product {
     availibility:boolean;
     safeFor:number;
     qualityScore:number;
-    tags:string[];
-    Tags:Tag[];
+    tags?:string[];
+    Tags?:Tag[];
     seller?:SellerAddress;
     Addresses?:SellerAddress[];
     price?: number;
