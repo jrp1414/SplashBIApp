@@ -26,8 +26,8 @@ export class WebWorkerExComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (typeof Worker !== undefined) {
-      this.webworker = new Worker("./fibonacci.worker");
+    if (typeof Worker !== 'undefined') {
+      this.webworker = new Worker("./fibonacci.worker", { type: `module` });
       this.webworker.onmessage = (data) => {
         this.outputWorker = data.data;
       }
